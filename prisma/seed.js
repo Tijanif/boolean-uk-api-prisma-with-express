@@ -1,11 +1,10 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+// const { PrismaClient } = require('@prisma/client');
+// const prisma = new PrismaClient();
 
 async function seed() {
   // Prisma create query to seed models in database
 
   const myBook = await prisma.book.create({
-    // where: { name: 'James Bond' },
     data: {
       name: 'James Bond',
       author: 'Tati',
@@ -15,7 +14,6 @@ async function seed() {
   });
 
   const mySecondBook = await prisma.book.create({
-    // where: { name: 'James Dean' },
     data: {
       name: 'James Dean',
       author: 'Tati',
