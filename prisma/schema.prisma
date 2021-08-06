@@ -10,3 +10,12 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Book {
+  id               Int      @id @default(autoincrement())
+  name             String
+  author           String
+  type             String?
+  topic            String
+  publicationsDate DateTime @default(now())
+}
