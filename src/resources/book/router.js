@@ -1,10 +1,8 @@
 const booksRouter = require('express').Router;
 
-const { getAllBooks, books } = require('./controller');
+const { getAllBooks } = require('./controller');
 
-booksRouter.get('/', (req, res) => {
-  res.json({ msg: 'okay' });
-});
+booksRouter.get('/', (req, res) => {});
 
 module.exports = {
   booksRouter,

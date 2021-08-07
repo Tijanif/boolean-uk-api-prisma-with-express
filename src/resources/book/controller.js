@@ -7,8 +7,6 @@ const getAllBooks = (req, res) => {
   });
 };
 
-// const books = req.prisma.book.findMany();
 module.exports = {
   getAllBooks,
-  // books,
 };
