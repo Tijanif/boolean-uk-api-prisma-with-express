@@ -1,10 +1,10 @@
+const prisma = require('../../utilities/dbClient');
+
 // Get ALL books
 const getAllBooks = (req, res) => {
-  const books = req.prisma.book.findMany();
-
-  // books.then((books) => {
-  //   res.json({ books });
-  // });
+  prisma.book.findMany().then((books) => {
+    res.json({ books });
+  });
 };
 
 module.exports = {

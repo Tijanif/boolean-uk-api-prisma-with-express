@@ -1,7 +1,5 @@
 const express = require('express');
 const morgan = require('morgan');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
 const { booksRouter } = require('./resources/book/router');
 
 const app = express();
@@ -9,14 +7,8 @@ const app = express();
 // Middleware
 app.use(morgan('dev'));
 app.use(express.json());
-app.use((req, res, next) => {
-  req.prisma = prisma;
-
-  next();
-});
 
 // Routes
-
 app.get('*', (req, res) => {
   res.json({ msg: 'All Okay' });
 });
