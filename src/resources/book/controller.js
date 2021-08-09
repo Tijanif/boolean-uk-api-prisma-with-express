@@ -35,8 +35,39 @@ const createABook = (req, res) => {
     });
 };
 
+// Update a book
+// const updateABook = (res, res) => {
+//   const newinfo = req.body;
+//   prisma.book
+//     .update({
+//       where: {
+//         email: 'viola@prisma.io',
+//       },
+//       data: {
+//         name: 'Viola the Magnificent',
+//       },
+//     })
+//     .then((updated) => {
+//       res.json({ updated });
+//     });
+// };
+
+// Delete a book by id
+const deleteById = (req, res) => {
+  const id = Number(req.params.id);
+  prisma.book
+    .delete({
+      where: {
+        id: id,
+      },
+    })
+    .then((deletedItem) => {
+      res.json({ deletedItem });
+    });
+};
 module.exports = {
   getAllBooks,
   createABook,
   findOnebyId,
+  deleteById,
 };
