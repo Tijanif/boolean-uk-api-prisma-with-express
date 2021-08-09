@@ -36,21 +36,38 @@ const createABook = (req, res) => {
 };
 
 // Update a book
-// const updateABook = (res, res) => {
-//   const newinfo = req.body;
-//   prisma.book
-//     .update({
-//       where: {
-//         email: 'viola@prisma.io',
-//       },
-//       data: {
-//         name: 'Viola the Magnificent',
-//       },
-//     })
-//     .then((updated) => {
-//       res.json({ updated });
-//     });
-// };
+const updateABook = async (req, res) => {
+  const newInfo = req.body;
+  const id = Number(req.params.id);
+
+  try {
+    const foundItem = prisma.book.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (foundItem) {
+      await prisma.book
+        .update({
+          where: {
+            id: id,
+          },
+          data: {
+            ...newInfo,
+          },
+        })
+        .then((updated) => {
+          res.json({ updated });
+        });
+    } else {
+      res.json({ msg: 'This book id do not exist' });
+    }
+  } catch (error) {
+    res.json((error) => {
+      error.message;
+    });
+  }
+};
 
 // Delete a book by id
 const deleteById = (req, res) => {
@@ -68,6 +85,7 @@ const deleteById = (req, res) => {
 module.exports = {
   getAllBooks,
   createABook,
+  updateABook,
   findOnebyId,
   deleteById,
 };

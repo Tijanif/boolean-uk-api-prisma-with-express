@@ -5,6 +5,7 @@ const {
   createABook,
   findOnebyId,
   deleteById,
+  updateABook,
 } = require('./controller');
 
 // Get All Books
@@ -15,6 +16,9 @@ booksRouter.get('/:id', findOnebyId);
 
 //  Create a book
 booksRouter.post('/', createABook);
+
+// Update book
+booksRouter.patch('/:id', updateABook);
 
 // Delete by id
 booksRouter.delete('/:id', deleteById);
