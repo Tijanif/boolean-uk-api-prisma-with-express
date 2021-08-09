@@ -82,10 +82,70 @@ const deleteById = (req, res) => {
       res.json({ deletedItem });
     });
 };
+
+// Find many
+
+const findManyBooksByType = async (req, res) => {
+  const types = req.params.type;
+  const topics = req.query.topic;
+
+  console.log(types);
+  try {
+    if (topics) {
+      const books = await prisma.book.findMany({
+        where: {
+          type: types,
+          topic: topics,
+        },
+      });
+      res.json({ filteredBooksByTopic: books });
+    } else {
+      const books = await prisma.book.findMany({
+        where: {
+          type: types,
+        },
+      });
+      res.json({ filteredBooksByType: books });
+    }
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+};
+
+const findAuthor = async (req, res) => {
+  const author = req.params.author;
+  const authorName = req.query.name;
+
+  console.log(author);
+  console.log(authorName);
+
+  try {
+    if (authorName) {
+      const authors = await prisma.book.findMany({
+        where: {
+          author: authorName,
+        },
+      });
+      res.json({ filteredAuthors: authors });
+    }
+    // else {
+    //   const books = await prisma.book.findMany({
+    //     where: {
+    //       type: types,
+    //     },
+    //   });
+    //   res.json({ filteredBooksByType: books });
+    // }
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+};
 module.exports = {
   getAllBooks,
   createABook,
   updateABook,
   findOnebyId,
   deleteById,
+  findManyBooksByType,
+  findAuthor,
 };

@@ -6,6 +6,8 @@ const {
   findOnebyId,
   deleteById,
   updateABook,
+  findManyBooksByType,
+  findAuthor,
 } = require('./controller');
 
 // Get All Books
@@ -22,6 +24,10 @@ booksRouter.patch('/:id', updateABook);
 
 // Delete by id
 booksRouter.delete('/:id', deleteById);
+
+booksRouter.get('/type/:type', findManyBooksByType);
+
+booksRouter.get('/author/:name', findAuthor);
 
 module.exports = {
   booksRouter,
