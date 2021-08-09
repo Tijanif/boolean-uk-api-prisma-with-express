@@ -6,8 +6,8 @@ async function seed() {
 
   const myBook = await prisma.book.create({
     data: {
-      name: 'James Bond',
-      author: 'Tati',
+      name: 'Lost in the world',
+      author: 'Lucy doll',
       type: 'fiction',
       topic: 'Horror',
     },
@@ -15,14 +15,12 @@ async function seed() {
 
   const mySecondBook = await prisma.book.create({
     data: {
-      name: 'James Dean',
+      name: 'There and back again',
       author: 'Tati',
       type: 'non fiction',
       topic: 'drama',
     },
   });
-
-  console.log({ myBook, mySecondBook });
 }
 
 seed()
@@ -34,6 +32,4 @@ seed()
     await prisma.$disconnect();
   });
 
-module.exports = {
-  seed,
-};
+module.exports = seed;

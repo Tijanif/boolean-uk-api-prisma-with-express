@@ -1,4 +1,4 @@
-const booksRouter = require('express').Router;
+const booksRouter = require('express').Router();
 
 const { getAllBooks } = require('./controller');
 
